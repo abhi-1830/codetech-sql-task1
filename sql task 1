@@ -1,0 +1,30 @@
+##Data insertion using the sql workbench
+/* Inserted three tables named customers,products,sale using the sql workbench inbuilt resources using import data in form of the csv
+#data base used is project
+use project;
+select * from customers;
+select * from products;
+select * from sale;
+/*PERFORM INNER, LEFT, RIGHT, AND
+FULL JOINS ON TABLES TO COMBINE DATA MEANINGFULLY.?*/
+/*1.left join to find Total revenue of products as per each category.*/
+select p.category, sum(s.quantity*s.amount) as total_revenue from products p
+  Left join sale s on
+  p.prod_id=s.prod_id
+  Group by p.category;
+/* Right Join*/
+select p.category, sum(s.quantity*s.amount) as total_revenue from sale s
+  right join products p on
+  p.prod_id=s.prod_id
+  Group by p.category;
+  
+/* full join*/
+SELECT *
+FROM customers
+ JOIN sale ON customers.cust_id = sale.cust_id
+ JOIN products ON sale.prod_id = products.prod_id;
+ 
+ 
+
+
+
